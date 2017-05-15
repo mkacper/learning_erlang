@@ -52,6 +52,7 @@ init([]) ->
     Tid = ets:new(srv_ets, []),
     ets:insert(Tid, {init_val, InitVal}),
     ets:insert(Tid, {val, CurrentVal}),
+    process_flag(trap_exit, true),
     {ok, Tid}.
 
 handle_cast({inc, Val}, Tid) ->
